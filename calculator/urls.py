@@ -4,5 +4,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.entropy, name="entropy"),
+    path('', views.home, name="home"),
+    path('entropy/', views.entropy, name="entropy"),
 ]
