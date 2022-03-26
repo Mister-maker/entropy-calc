@@ -1,5 +1,8 @@
 from django.shortcuts import redirect, render, redirect
+from django.conf import settings
 from math import log2
+import os
+from os.path import abspath
 
 # Create your views here.
 
@@ -7,7 +10,7 @@ from .models import EntropyCalc
 from .forms import EntropyCalcForm
 
 
-def entropy(string,size):
+def entropy_read(string,size):
     n= len(string)
     count=0
     for i in range(n):
@@ -23,9 +26,36 @@ def home(request):
 
     if form.is_valid():
         # save the form data to model
-        form.save()
+        obj = form.save(commit=False)
+        obj.save()
 
-        return redirect('entropy')
+        print("this is your file in form", obj.csv_file)
+
+
+        with open(obj.csv_file.path) as f:
+            print(f.read)
+            string= f.read()
+
+        n = len(string)
+        countentropy=0
+        w = n-99
+        size=w
+        for i in range(n):
+            if i+w>n:
+                break
+            countentropy+=1
+        count=0
+
+        with open(obj.output.path, 'w') as wr:
+            for i in range(countentropy):
+                wr.write(str(entropy_read(string[i:w], size))+"\n")
+                w+=1
+
+        # obj.save()
+
+        # print("This is wr", abspath(wr.name))
+
+        # return redirect('entropy')
 
     context = {
         'form': form
@@ -35,29 +65,33 @@ def home(request):
 
 
 def entropy(request):
-    entropy = EntropyCalc.objects.all()
+    entropy_obj = EntropyCalc.objects.all()
 
-    for item in entropy:
+    for item in entropy_obj:
         print(item.csv_file.path)
 
         with open(item.csv_file.path) as f:
             print(f.read)
             string= f.read()
 
-    # n= len(string)
-    # countentropy=0
-    # # w= int(input("Enter the window size: "))
-    # w= n-99
-    # size=w
-    # for i in range(n):
-    #     if i+w>n:
-    #         break
-    #     countentropy+=1
-    # count=0
-    # with open("output.csv", 'w') as wr:
-    #     for i in range(countentropy):
-    #         wr.write(str(entropy(string[i:w], size))+"\n")
-    #         w+=1
+    n = len(string)
+    countentropy=0
+    w = n-99
+    size=w
+    for i in range(n):
+        if i+w>n:
+            break
+        countentropy+=1
+    count=0
+
+    with open('output/output.csv', 'w') as wr:
+        for i in range(countentropy):
+            wr.write(str(entropy_read(string[i:w], size))+"\n")
+            w+=1
+
+        print("This is WR", wr)
+        entropy_obj.output = wr
+        entropy_obj.save()
 
     return render(request, 'calculator/upload_csv.html')
    
