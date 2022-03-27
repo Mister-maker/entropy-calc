@@ -5,17 +5,14 @@
 
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
+    <div class="row mt-5">
+        <div class="col-md-5 mx-auto shadow p-5 bg-white">
+            <h2 class="text-center">Upload CSV File</h2>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{form | crispy}}
-            
+                {{form | crispy}} 
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-            
-            
+            </form>            
         </div>
     </div>
 </div>
