@@ -10,4 +10,4 @@ class EntropyCalcForm(forms.ModelForm):
     class Meta:
         model = EntropyCalc
         fields = "__all__"
-        exclude = ('output',)
+        exclude = ('output', 'url')

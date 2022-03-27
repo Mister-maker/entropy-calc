@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Your Result:</h1>
+
+
+    <ul>
+        {% for item in entropy_obj %}
+            <li><a href="{{item.csv_file.url}}" download>{{item.title}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock content %}
