@@ -50,11 +50,6 @@ def home(request):
             for i in range(countentropy):
                 wr.write(str(entropy_read(string[i:w], size))+"\n")
                 w+=1
-        
-        obj.url = abspath(wr.name)
-        obj.save()
-
-        # print("This is wr", abspath(wr.name))
 
         return redirect('entropy')
 
@@ -67,7 +62,7 @@ def home(request):
 
 def entropy(request):
     entropy_obj = EntropyCalc.objects.all()
-    
+
     context = {
         'entropy_obj': entropy_obj
     }
