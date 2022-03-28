@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <div class="row mt-5">
         <div class="col-md-5 mx-auto shadow p-5 bg-white">
             <h2 class="text-center">Upload CSV File</h2>
@@ -15,21 +15,103 @@
             </form>      
         </div>
     </div>
+</div> -->
 
-    {% if object %}
-    <div class="row mt-1">
-        <div class="col-md-5 mx-auto shadow p-5 bg-white">
-            <h2 class="text-center">Result</h2>
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{object.title}}
-                    <a href="{{object.csv_file.url}}" class="btn-primary btn" download="">Download Result</a>
-                </li>  
-            </ul>     
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload CSV File</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form | crispy}} 
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>  
+        </div>
+      </div>
     </div>
-    {% endif %}
+  </div>
 
-</div>
+ 
+<main>
+    <section>
+      <h3 class="section-head">Overview</h3>
+      <div class="analytics">
+        <div class="analytic">
+          <div class="analytic-icon"><span class="las la-eye"></span></div>
+          <div class="analytic-info">
+            <h4>Total views</h4>
+            <h1>10.3M</h1>
+          </div>
+        </div>
+        <div class="analytic">
+          <div class="analytic-icon"><span class="las la-clock"></span></div>
+          <div class="analytic-info">
+            <h4>Watch time (hrs)</h4>
+            <h1>20.9k <small class="text-danger">5%</small></h1>
+          </div>
+        </div>
+        <div class="analytic">
+          <div class="analytic-icon"><span class="las la-users"></span></div>
+          <div class="analytic-info">
+            <h4>Subscribers</h4>
+            <h1>1.3k <small class="text-success">12%</small></h1>
+          </div>
+        </div>
+        <div class="analytic">
+          <div class="analytic-icon"><span class="las la-heart"></span></div>
+          <div class="analytic-info">
+            <h4>Total likes</h4>
+            <h1>3.4M </h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="block-grid">
+        <div class="revenue-card">
+          <h3 class="section-head">Download Csv</h3>
+          <div class="rev-content">
+            <!-- <img src="https://media-exp1.licdn.com/dms/image/C4D03AQF9R2lxnH4fOw/profile-displayphoto-shrink_200_200/0/1639841285929?e=1645660800&v=beta&t=NAIfG4HpAKNOkf2W5RDHRWQgrFrwqMXjBoS_UwQ4RBw" alt="profile"> -->
+            <!-- <div class="rev-info">
+              <h3>Mohsen Alizade</h3>
+              <h1>3.5M <small>Subscribers</small></h1>
+            </div> -->
+            {% if object %}
+            <div class="rev-sum">
+                <a href="{{object.csv_file.url}}" class="btn-primary btn" download="">{{object.title}}</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="graph-card">
+          <h3 class="section-head">Graph</h3>
+          <div class="graph-content">
+            <div class="graph-head">
+              <div class="icon-wrapper">
+                <div class="icon"><span class="las la-eye text-main"></span></div>
+                <div class="icon"><span class="las la-clock text-success"></span></div>
+              </div>
+              <div class="graph-select">
+                <select name="" id="">
+                  <option value="">Septamber</option>
+                </select>
+              </div>
+            </div>
+            <div class="graph-board">
+              <canvas id="revenueChart" width="100%"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
 {% endblock content %}
