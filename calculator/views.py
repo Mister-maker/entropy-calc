@@ -51,7 +51,7 @@ def home(request):
         obj = form.save(commit=False)
         obj.save()
 
-        if (obj.CALCULATE == 'shannon'):
+        if (obj.calculate == 'shannon'):
             with open(obj.csv_file.path) as f:
                 print(f.read)
                 string= f.read()
