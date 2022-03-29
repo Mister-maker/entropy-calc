@@ -29,6 +29,10 @@ img {
   width: 100%;
   height: auto;
 }
+
+.modal-dialog{
+  box-shadow: 0 40px 40px rgb(0, 0, 0, 0.2) !important;
+}
 #menu-toggle {
   display: none;
 }
@@ -139,13 +143,12 @@ Sidebar
 .sidebar-menu a {
   color: var(--main-text);
   display: block;
-  padding: 0.7rem 0;
+  padding: 0.8rem;
   text-decoration: none !important;
 }
 .sidebar-menu a.active {
   background-color: var(--main-accent);
   border-radius: 7px;
-  padding: 0.8rem;
 }
 .sidebar-menu a span:first-child {
   display: inline-block;
@@ -291,7 +294,7 @@ main {
   color: #2ec3a3;
 }
 .analytic:nth-child(4) .analytic-icon {
-  background-color: var(--main-accent);
+  background-color: #ffd0b8;
   color: var(--color-main);
 }
 .analytic-icon {
