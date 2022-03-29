@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render, redirect
 from django.conf import settings
 from math import log2, pow
-import os
+import os, csv
 from os.path import abspath
 
 # Create your views here.
@@ -45,6 +45,7 @@ def home(request):
     # create object of forms
     form = EntropyCalcForm(request.POST or None, request.FILES or None)
     obj_public = None
+    length_of_binary = None
 
     if form.is_valid():
         # save the form data to model
@@ -97,10 +98,12 @@ def home(request):
                     wr.write(f'The average is {sum/countentropy}\n\n')
 
         obj_public = obj
+        length_of_binary = n
 
     context = {
         'form': form,
-        'object': obj_public
+        'object': obj_public,
+        'length_of_binary': length_of_binary
     }
 
     return render(request, 'calculator/index.html', context)
