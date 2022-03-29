@@ -4,11 +4,11 @@ Basic
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --color-main: #f3950d;
-  --main-accent: #ffebcc;
-  --bg: #f5eedc;
+  --color-main: #e42c6a;
+  --main-accent: #ffefe7;
+  --bg: #eeeeee;
   --bg-2: #dce5ff;
-  --main: #292c6d;
+  --main: #32064a;
   --shadow: rgba(17, 17, 26, 0.1) 2px 0px 16px;
 }
 
@@ -77,7 +77,7 @@ Sidebar
   height: 100%;
   width: 100%;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: var(--shadow);
   padding: 1.2rem;
   overflow-y: auto;
@@ -90,7 +90,7 @@ Sidebar
 }
 .sidebar-container::-webkit-scrollbar-thumb {
   background-color: var(--main-accent);
-  outline: 1px solid #ccc;
+  
   border-radius: 2px;
 }
 .brand {
@@ -140,6 +140,7 @@ Sidebar
   color: var(--main-text);
   display: block;
   padding: 0.7rem 0;
+  text-decoration: none !important;
 }
 .sidebar-menu a.active {
   background-color: var(--main-accent);
@@ -248,12 +249,20 @@ main {
   grid-gap: 2.5rem;
   margin-bottom: 3rem;
 }
+
 .analytic {
   box-shadow: var(--shadow);
   padding: 1.5rem;
   border-radius: 10px;
   display: flex;
   padding-left: 2rem;
+  background-color: var(--main-accent);
+  /* backdrop-filter: blur(17px) saturate(155%);
+  -webkit-backdrop-filter: blur(17px) saturate(155%);
+  background-color: rgba(172, 156, 113, 0.2); */
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  /* border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3); */
 }
 .analytic-info h4 {
   font-weight: 400;
@@ -268,6 +277,7 @@ main {
   font-size: 0.8rem;
   font-weight: 700;
 }
+
 .analytic:first-child .analytic-icon {
   background-color: #dce5ff;
   color: #6883db;
@@ -307,7 +317,7 @@ main {
   background-color: #fff;
   box-shadow: var(--shadow);
   border-radius: 15px;
-  padding: 1rem 2rem;
+  padding: 1rem;
   text-align: center;
 }
 .rev-content img {
